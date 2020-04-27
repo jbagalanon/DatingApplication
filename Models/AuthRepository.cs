@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingAPI.Models
 {
@@ -14,9 +15,9 @@ namespace DatingAPI.Models
         {
             _context = context;
         }
-        public Task<User> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<User> Register(User user, string password)
