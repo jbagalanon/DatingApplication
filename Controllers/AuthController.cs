@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatingAPI.Dtos;
 using DatingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace DatingAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController :ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
 
@@ -21,15 +22,16 @@ namespace DatingAPI.Controllers
 
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string username, string password)
+        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
 
             //validate request
 
-            username = username.ToLower();
+            userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
-            if (await _userExists(username))
+            if (await _repo.UserExists(userForRegisterDto.Username))
             {
+
                 return BadRequest("username already exists");
             }
 
@@ -37,16 +39,19 @@ namespace DatingAPI.Controllers
             {
                 var userToCreate = new User
                 {
-                    Username = username
+                    Username = userForRegisterDto.Username
                 };
-                var createdUser = await _repo.Register(userToCreate, password);
-
-                return StatusCode(201);                             
-
+                var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
+                
             }
+            return StatusCode(201);
 
-           
+
         }
 
+        private Task<bool> userExists(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
