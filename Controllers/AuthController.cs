@@ -20,6 +20,10 @@ namespace DatingAPI.Controllers
             _repo = repo;
         }
 
+        private Task<bool> userExists(string username)
+        {
+            throw new NotImplementedException();
+        }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
@@ -35,6 +39,8 @@ namespace DatingAPI.Controllers
                 return BadRequest("username already exists");
             }
 
+            
+
             else
             {
                 var userToCreate = new User
@@ -49,9 +55,18 @@ namespace DatingAPI.Controllers
 
         }
 
-        private Task<bool> userExists(string username)
+        [HttpPost("Login")]
+        public Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            throw new NotImplementedException();
+            var userFromRepo = await _repo.Login(userForLoginDto.Username, userForLoginDto.Password);
+
+            if (userFromRepo == null)
+            {
+                return Unauthorized();
+            }
+
+
         }
+     
     }
 }
