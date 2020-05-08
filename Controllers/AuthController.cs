@@ -63,8 +63,7 @@ namespace DatingAPI.Controllers
         {
          
             {
-                throw new Exception("Computer Says no");
-                // code will stop here for the exception error purpose
+              
 
                 var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
