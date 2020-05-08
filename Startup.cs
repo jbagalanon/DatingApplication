@@ -64,7 +64,7 @@ namespace DatingAPI
             else
             {
 
-                app.UseExceptionHandler(builder =>
+                app.UseExceptionHandler(builder => 
                 {
                     builder.Run(async context =>
                     {
