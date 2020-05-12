@@ -10,6 +10,9 @@ namespace DatingAPI.Models
         public DateTime DatedAdded { get; set; }
 
         public bool IsMain { get; set; }
+
+        public User User { get; set; }
+        public int UserId { get; set; }
         
     }
 }

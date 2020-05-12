@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200510103738_UserDataAndPhotos")]
-    partial class UserDataAndPhotos
+    [Migration("20200512171543_ExtendUserCascadeDelete")]
+    partial class ExtendUserCascadeDelete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace DatingAPI.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -88,9 +88,10 @@ namespace DatingAPI.Migrations
 
             modelBuilder.Entity("DatingAPI.Models.Photo", b =>
                 {
-                    b.HasOne("DatingAPI.Models.User")
+                    b.HasOne("DatingAPI.Models.User", "User")
                         .WithMany("Photo")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

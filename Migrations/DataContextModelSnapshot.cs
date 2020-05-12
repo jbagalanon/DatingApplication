@@ -29,7 +29,7 @@ namespace DatingAPI.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -86,9 +86,10 @@ namespace DatingAPI.Migrations
 
             modelBuilder.Entity("DatingAPI.Models.Photo", b =>
                 {
-                    b.HasOne("DatingAPI.Models.User")
+                    b.HasOne("DatingAPI.Models.User", "User")
                         .WithMany("Photo")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
