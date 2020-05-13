@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingAPI.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,13 @@ namespace DatingAPI.Controllers
     {
         private readonly IDatingRepository _repo;
 
-        public UsersController(IDatingRepository repo)
+        private readonly IMapper _mapper;
+
+        public UsersController(IDatingRepository repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
+
         }
 
         [HttpGet]
