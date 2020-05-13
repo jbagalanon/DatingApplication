@@ -38,6 +38,7 @@ namespace DatingAPI
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
