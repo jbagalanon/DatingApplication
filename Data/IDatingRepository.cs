@@ -6,7 +6,7 @@ using DatingAPI.Models;
 
 namespace DatingAPI.Data
 {
-    interface IDatingRepository
+    public interface IDatingRepository
     {
 
         
@@ -18,7 +18,7 @@ namespace DatingAPI.Data
 
         Task <IEnumerable<User>> GetUsers();
 
-        Task <User> GetUser();
+        Task <User> GetUser(int id);
 
 
 

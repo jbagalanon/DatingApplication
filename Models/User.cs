@@ -26,7 +26,7 @@ namespace DatingAPI.Models
         public string Country { get; set; }
 
 
-        public ICollection<Photo> Photo { get; set; }
+        public ICollection<Photo> Photos { get; set; }
 
 
     }
