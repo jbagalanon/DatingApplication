@@ -15,4 +15,4 @@ namespace DatingAPI.Dtos
         public string Country { get; set; }
     }
 }
-}
+
