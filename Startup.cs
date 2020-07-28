@@ -45,6 +45,7 @@ namespace DatingAPI
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinaySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
