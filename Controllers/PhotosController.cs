@@ -43,8 +43,18 @@ namespace DatingAPI.Controllers
             _cloudinaryConfig = new Cloudinary(acc);
         }
 
+        [HttpGet("{id}", Name = "GetPhoto")]
+
+        public async Task<IActionResult> GetPhoto(int id)
+        {
+            var photoFromRepo = _repo.GetPhoto(id);
+
+            var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
+        }
+
+
         [HttpPost]
-        [Obsolete]
+       
         public async Task<IActionResult> AddPhotoForUser(int userId, PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -82,7 +92,7 @@ namespace DatingAPI.Controllers
 
             if (await _repo.SaveAll())
             {
-                return Ok();
+                return CreatedAtRoute();
             }
 
             return BadRequest("Could not add photo");
