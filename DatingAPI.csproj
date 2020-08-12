@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200510103738_UserDataAndPhotos.cs" />
     <Compile Remove="Migrations\20200510103738_UserDataAndPhotos.Designer.cs" />
+    <Compile Remove="Migrations\20200803133855_change string to int id photo models.cs" />
+    <Compile Remove="Migrations\20200803133855_change string to int id photo models.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
