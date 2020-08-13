@@ -7,7 +7,7 @@ namespace DatingAPI.Dtos
 {
     public class PhotoForReturnDto
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
         public DateTime DatedAdded { get; set; }
